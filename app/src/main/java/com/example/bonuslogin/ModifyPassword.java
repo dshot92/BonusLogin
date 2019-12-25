@@ -104,6 +104,11 @@ public class ModifyPassword extends AppCompatActivity {
             errors++;
         }
 
+        if(newpass.getText().toString().equals(oldPass.getText().toString())){
+            newpass.setError("Cannot be equal to actual Password");
+            errors++;
+        }
+
         return (errors == 0);
     }
 }

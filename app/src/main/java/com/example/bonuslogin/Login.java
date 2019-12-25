@@ -21,7 +21,6 @@ public class Login extends AppCompatActivity {
     List<User> userList;
     User user;
     EditText username, password;
-    TextView errorText;
     Button signIn_button;
     TextView signup_text;
 
@@ -35,7 +34,6 @@ public class Login extends AppCompatActivity {
         user = new User();
         username = findViewById(R.id.input_login_username);
         password = findViewById(R.id.input_login_password);
-        errorText = findViewById(R.id.errorText);
         signIn_button = findViewById(R.id.signin_button);
         signup_text = findViewById(R.id.signup_text);
 
