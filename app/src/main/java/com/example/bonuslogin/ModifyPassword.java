@@ -102,6 +102,7 @@ public class ModifyPassword extends AppCompatActivity {
         }else{
             newpassconf.setError("Passowords does not Match");
             errors++;
+            //hello
         }
 
         if(newpass.getText().toString().equals(oldPass.getText().toString())){

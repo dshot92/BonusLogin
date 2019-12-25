@@ -6,18 +6,8 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6460821-751f-43b9-9083-c480af211dcc" name="Default Changelist" comment="Done">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bonuslogin/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bonuslogin/Login.java" afterDir="false" />
+    <list default="true" id="c6460821-751f-43b9-9083-c480af211dcc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bonuslogin/ModifyPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bonuslogin/ModifyPassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_modify_password.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_modify_password.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/bonuslogin/ModifyPassword.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="100" column="39" lean-forward="true" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+            <state relative-caret-position="306">
+              <caret line="104" column="19" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
               <folding>
                 <element signature="e#0#3250#0" expanded="true" />
               </folding>
@@ -318,6 +308,14 @@
       <option name="presentableId" value="Default" />
       <updated>1577202534643</updated>
     </task>
+    <task id="LOCAL-00001" summary="Cannot set new password as old pass, plus new button colors">
+      <created>1577287689090</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1577287689090</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -340,7 +338,7 @@
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Resources Explorer" order="6" />
-      <window_info active="true" content_ui="combo" id="Project" order="7" visible="true" weight="0.1609808" />
+      <window_info content_ui="combo" id="Project" order="7" visible="true" weight="0.1609808" />
       <window_info id="Captures" order="8" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Logcat" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" weight="0.3290461" />
@@ -348,10 +346,10 @@
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Version Control" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" weight="0.3290461" />
-      <window_info anchor="bottom" id="Build" order="6" visible="true" weight="0.3290461" />
+      <window_info anchor="bottom" id="Build" order="6" weight="0.3290461" />
       <window_info anchor="bottom" id="Find" order="7" weight="0.3290461" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" />
-      <window_info anchor="bottom" id="Run" order="9" weight="0.3290461" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.9678457" />
+      <window_info active="true" anchor="bottom" id="Run" order="9" visible="true" weight="0.3290461" />
       <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.3290461" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" />
@@ -390,7 +388,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Done" />
+    <MESSAGE value="Cannot set new password as old pass, plus new button colors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cannot set new password as old pass, plus new button colors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -622,8 +621,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/bonuslogin/ModifyPassword.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="100" column="39" lean-forward="true" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+        <state relative-caret-position="306">
+          <caret line="104" column="19" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
           <folding>
             <element signature="e#0#3250#0" expanded="true" />
           </folding>
