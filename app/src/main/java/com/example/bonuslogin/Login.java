@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
 
         errors++;
         username.setError("Wrong Username or Wrong Password");
-        password.setError("Wrong Password or Wrong Password");
+        password.setError("Wrong Username or Wrong Password");
         for (User u : userList) {
             if (u.getPassword().equals(password.getText().toString()) && u.getUsername().equals(username.getText().toString())) {
                 user = u;
