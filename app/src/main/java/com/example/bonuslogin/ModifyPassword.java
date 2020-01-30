@@ -8,24 +8,31 @@ package com.example.bonuslogin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class ModifyPassword extends AppCompatActivity {
 
-    TextView username, oldPass, newpass, newpassconf;
+    TextView username, oldPass;
+    EditText  newpass, newpassconf;
     Button modify, home;
     User user;
+    boolean isPasswordVisibleNEW, isPasswordVisibleCONFIRM;
 
     public static final String EXTRA_USER = "package com.example.BonusLogin";
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +44,8 @@ public class ModifyPassword extends AppCompatActivity {
         newpassconf = findViewById(R.id.input_passwordNewConfirm);
         modify = findViewById(R.id.input_button_signUp);
         home = findViewById(R.id.input_button_home);
-
+        isPasswordVisibleNEW = true;
+        isPasswordVisibleCONFIRM = true;
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra(Login.EXTRA_USER);
@@ -74,6 +82,61 @@ public class ModifyPassword extends AppCompatActivity {
                 Intent home = new Intent(ModifyPassword.this, Home.class);
                 home.putExtra(EXTRA_USER, user);
                 startActivity(home);
+            }
+        });
+
+        newpass.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (newpass.getRight() - newpass.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = newpass.getSelectionEnd();
+                        if (isPasswordVisibleNEW) {
+                            // set drawable image
+                            newpass.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
+                            // hide Password
+                            newpass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            isPasswordVisibleNEW = false;
+                        } else  {
+                            // set drawable image
+                            newpass.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
+                            // show Password
+                            newpass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisibleNEW = true;
+                        }
+                        newpass.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        newpassconf.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (newpassconf.getRight() - newpassconf.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = newpassconf.getSelectionEnd();
+                        if (isPasswordVisibleCONFIRM) {
+                            // set drawable image
+                            newpassconf.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
+                            // hide Password
+                            newpassconf.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            isPasswordVisibleCONFIRM = false;
+                        } else  {
+                            // set drawable image
+                            newpassconf.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
+                            // show Password
+                            newpassconf.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisibleCONFIRM = true;
+                        }
+                        newpassconf.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
             }
         });
     }
