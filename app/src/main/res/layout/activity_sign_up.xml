@@ -86,7 +86,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                android:drawableRight="@drawable/show_password2"
+                android:longClickable="false"/>
 
             <TextView
                 android:id="@+id/textView5"
@@ -112,7 +114,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                android:drawableRight="@drawable/show_password2"
+                android:longClickable="false"/>
 
             <TextView
                 android:id="@+id/textView6"
