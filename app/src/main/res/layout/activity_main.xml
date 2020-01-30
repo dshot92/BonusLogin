@@ -74,7 +74,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_login_username" />
+        app:layout_constraintTop_toBottomOf="@+id/input_login_username"
+        android:drawableRight="@drawable/show_password2"
+        android:longClickable="false"
+        />
 
     <Button
         android:id="@+id/signin_button"

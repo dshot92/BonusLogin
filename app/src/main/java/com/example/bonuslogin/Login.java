@@ -8,8 +8,12 @@ package com.example.bonuslogin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,9 +27,11 @@ public class Login extends AppCompatActivity {
     EditText username, password;
     Button signIn_button;
     TextView signup_text;
+    boolean isPasswordVisible = true;
 
     public static final String EXTRA_USER = "package com.example.BonusLogin";
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +42,6 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.input_login_password);
         signIn_button = findViewById(R.id.signin_button);
         signup_text = findViewById(R.id.signup_text);
-
 
         signIn_button.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -55,6 +60,34 @@ public class Login extends AppCompatActivity {
             Intent showResult = new Intent(Login.this, SignUp.class);
             showResult.putExtra(EXTRA_USER, user);
             startActivity(showResult);
+            }
+        });
+
+        password.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (password.getRight() - password.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = password.getSelectionEnd();
+                        if (isPasswordVisible) {
+                            // set drawable image
+                            password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
+                            // hide Password
+                            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            isPasswordVisible = false;
+                        } else  {
+                            // set drawable image
+                            password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
+                            // show Password
+                            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisible = true;
+                        }
+                        password.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
             }
         });
     }
@@ -92,4 +125,5 @@ public class Login extends AppCompatActivity {
 
         return (errors == 0);
     }
+
 }
