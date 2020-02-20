@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="modifyButton">#446444</color>
-    <color name="homeButton">#2A3C75</color>
-    <color name="signout">#DD3F3F</color>
+    <color name="colorPrimary">#5bd1d7</color>
+    <color name="colorPrimaryDark">#348498</color>
+    <color name="modifyButton">#004d61</color>
+    <color name="homeButton">#558B2F</color>
+    <color name="signout">#ff502f</color>
     <color name="colorAccent">#DD3F3F</color>
+    <color name="loginButton">#5bd1d7</color>
 </resources>

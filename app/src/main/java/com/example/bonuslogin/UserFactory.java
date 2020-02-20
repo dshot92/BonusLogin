@@ -61,6 +61,17 @@ public class UserFactory {
         user2.getDate().set(Calendar.DAY_OF_MONTH,24);
         users.add(user2);
 
+        User user3 = new User();
+        user2.setUsername("d");
+        user2.setPassword("d");
+        user2.setCity("Cagliari");
+        user2.setDate(Calendar.getInstance());
+        user2.getDate().set(Calendar.YEAR,1990);
+        user2.getDate().set(Calendar.MONTH, Calendar.APRIL);
+        user2.getDate().set(Calendar.DAY_OF_MONTH,24);
+        users.add(user3);
+
+
         return users;
     }
 

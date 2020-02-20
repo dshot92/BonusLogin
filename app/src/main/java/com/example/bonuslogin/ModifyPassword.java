@@ -9,6 +9,7 @@ package com.example.bonuslogin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -18,13 +19,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class ModifyPassword extends AppCompatActivity {
 
     TextView username, oldPass;
-    EditText  newpass, newpassconf;
+    TextInputLayout newpass, newpassconf;
     Button modify, home;
     User user;
     boolean isPasswordVisibleNEW, isPasswordVisibleCONFIRM;
@@ -64,12 +69,22 @@ public class ModifyPassword extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (checkInput()) {
-                        user.setPassword(newpass.getText().toString());
-                        UserFactory.getInstance().modifyPass(user);
-                        Intent home = new Intent(ModifyPassword.this, ModifyPassword.class);
-                        home.putExtra(EXTRA_USER, user);
-                        startActivity(home);
+
+                    user.setPassword(Objects.requireNonNull(newpass.getEditText()).getText().toString());
+                    UserFactory.getInstance().modifyPass(user);
+                    Intent home = new Intent(ModifyPassword.this, ModifyPassword.class);
+                    home.putExtra(EXTRA_USER, user);
+
+                    Context context = getApplicationContext();
+                    CharSequence text = "Password Updated";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                    startActivity(home);
                 }else{
+
+
                     //todo trhow exception for mismathch new passwords
                 }
             }
@@ -84,61 +99,6 @@ public class ModifyPassword extends AppCompatActivity {
                 startActivity(home);
             }
         });
-
-        newpass.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int RIGHT = 2;
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (newpass.getRight() - newpass.getCompoundDrawables()[RIGHT].getBounds().width())) {
-                        int selection = newpass.getSelectionEnd();
-                        if (isPasswordVisibleNEW) {
-                            // set drawable image
-                            newpass.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
-                            // hide Password
-                            newpass.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                            isPasswordVisibleNEW = false;
-                        } else  {
-                            // set drawable image
-                            newpass.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
-                            // show Password
-                            newpass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                            isPasswordVisibleNEW = true;
-                        }
-                        newpass.setSelection(selection);
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
-        newpassconf.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int RIGHT = 2;
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (newpassconf.getRight() - newpassconf.getCompoundDrawables()[RIGHT].getBounds().width())) {
-                        int selection = newpassconf.getSelectionEnd();
-                        if (isPasswordVisibleCONFIRM) {
-                            // set drawable image
-                            newpassconf.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
-                            // hide Password
-                            newpassconf.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                            isPasswordVisibleCONFIRM = false;
-                        } else  {
-                            // set drawable image
-                            newpassconf.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
-                            // show Password
-                            newpassconf.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                            isPasswordVisibleCONFIRM = true;
-                        }
-                        newpassconf.setSelection(selection);
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
     }
 
     private boolean checkInput() {
@@ -146,21 +106,21 @@ public class ModifyPassword extends AppCompatActivity {
         //how many error occurred? We need to save the number
         int errors = 0;
 
-        if(newpass.getText() == null || newpass.getText().length() == 0){
+        if((Objects.requireNonNull(newpass.getEditText()).getText() == null) || (newpass.getEditText().getText().length() == 0)){
             newpass.setError("Insert Password");
             errors++;
         }else{
             newpass.setError(null);
         }
 
-        if(newpassconf.getText() == null || newpassconf.getText().length() == 0 ){
+        if((Objects.requireNonNull(newpassconf.getEditText()).getText() == null) || (newpassconf.getEditText().getText().length() == 0)){
             newpassconf.setError("Insert matching Password");
             errors++;
         }else{
             newpassconf.setError(null);
         }
 
-        if(newpass.getText().toString().equals(newpassconf.getText().toString())){
+        if(newpass.getEditText().getText().toString().equals(newpassconf.getEditText().getText().toString())){
             newpassconf.setError(null);
         }else{
             newpassconf.setError("Passowords does not Match");
@@ -168,7 +128,7 @@ public class ModifyPassword extends AppCompatActivity {
             //hello
         }
 
-        if(newpass.getText().toString().equals(oldPass.getText().toString())){
+        if(newpass.getEditText().getText().toString().equals(oldPass.getText().toString())){
             newpass.setError("Cannot be equal to actual Password");
             errors++;
         }

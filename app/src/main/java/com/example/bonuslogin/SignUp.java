@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -20,16 +21,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class SignUp extends AppCompatActivity {
 
     User user = new User();
-    TextView username, city, date;
-    EditText password, passwordConf;
+    TextInputLayout username, city, password, passwordConf;
+    TextView date;
     Button signup_button;
     DatePickerFragment datePickerFragment = new DatePickerFragment();
     boolean isPasswordVisibleNEW, isPasswordVisibleCONFIRM;
@@ -87,9 +92,15 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkInput()) {
 
-                    user.setUsername(username.getText().toString());
-                    user.setPassword(password.getText().toString());
-                    user.setCity(city.getText().toString());
+                    Context context = getApplicationContext();
+                    CharSequence text = "Welcome " + Objects.requireNonNull(username.getEditText()).getText().toString();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                    user.setUsername(username.getEditText().getText().toString());
+                    user.setPassword(Objects.requireNonNull(password.getEditText()).getText().toString());
+                    user.setCity(Objects.requireNonNull(city.getEditText()).getText().toString());
                     user.setDate(datePickerFragment.getDate());
 
                     UserFactory.getInstance().addUsers(user);
@@ -102,60 +113,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        password.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int RIGHT = 2;
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (password.getRight() - password.getCompoundDrawables()[RIGHT].getBounds().width())) {
-                        int selection = password.getSelectionEnd();
-                        if (isPasswordVisibleNEW) {
-                            // set drawable image
-                            password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
-                            // hide Password
-                            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                            isPasswordVisibleNEW = false;
-                        } else  {
-                            // set drawable image
-                            password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
-                            // show Password
-                            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                            isPasswordVisibleNEW = true;
-                        }
-                        password.setSelection(selection);
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
-        passwordConf.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int RIGHT = 2;
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (passwordConf.getRight() - passwordConf.getCompoundDrawables()[RIGHT].getBounds().width())) {
-                        int selection = passwordConf.getSelectionEnd();
-                        if (isPasswordVisibleCONFIRM) {
-                            // set drawable image
-                            passwordConf.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
-                            // hide Password
-                            passwordConf.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                            isPasswordVisibleCONFIRM = false;
-                        } else  {
-                            // set drawable image
-                            passwordConf.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.show_password2, 0);
-                            // show Password
-                            passwordConf.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                            isPasswordVisibleCONFIRM = true;
-                        }
-                        passwordConf.setSelection(selection);
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
+
     }
 
     private boolean checkInput() {
@@ -163,35 +121,35 @@ public class SignUp extends AppCompatActivity {
         //how many error occurred? We need to save the number
         int errors = 0;
 
-        if(username.getText() == null || username.getText().length() == 0){
+        if(username.getEditText().getText() == null || username.getEditText().getText().length() == 0){
             username.setError("Insert UserName");
             errors++;
         }else{
             username.setError(null);
         }
 
-        if(password.getText() == null || password.getText().length() == 0){
+        if(password.getEditText().getText() == null || password.getEditText().getText().length() == 0){
             password.setError("Insert Password");
             errors++;
         }else{
             password.setError(null);
         }
 
-        if(passwordConf.getText() == null || passwordConf.getText().length() == 0 ){
+        if(passwordConf.getEditText().getText() == null || passwordConf.getEditText().getText().length() == 0 ){
             passwordConf.setError("Passowrd does not Match");
             errors++;
         }else{
             passwordConf.setError(null);
         }
 
-        if( password.getText().toString().equals(passwordConf.getText().toString())) {
+        if( password.getEditText().getText().toString().equals(passwordConf.getEditText().getText().toString())) {
             passwordConf.setError(null);
         }else{
             passwordConf.setError("Password must Match");
             errors++;
         }
 
-        if(city.getText() == null || city.getText().length() == 0 ){
+        if(city.getEditText().getText() == null || city.getEditText().getText().length() == 0 ){
             city.setError("Insert City");
             errors++;
         }else{
@@ -207,7 +165,7 @@ public class SignUp extends AppCompatActivity {
 
         List<User> userList = UserFactory.getInstance().getUsers();
         for (User u: userList) {
-            if ( u.getUsername().equals( username.getText().toString() ) && u.getPassword().equals( password.getText().toString() ) ) {
+            if ( u.getUsername().equals( username.getEditText().getText().toString() ) && u.getPassword().equals( password.getEditText().getText().toString() ) ) {
                 errors++;
                 username.setError("Username already Exist");
             }
