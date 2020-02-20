@@ -32,6 +32,7 @@ public class UserFactory {
     public List<User> getUsers() {
 
         User user = new User();
+   /*
         user.setUsername("dshot");
         user.setPassword("asd");
         user.setCity("Girasole");
@@ -70,7 +71,7 @@ public class UserFactory {
         user2.getDate().set(Calendar.MONTH, Calendar.APRIL);
         user2.getDate().set(Calendar.DAY_OF_MONTH,24);
         users.add(user3);
-
+*/
 
         return users;
     }
